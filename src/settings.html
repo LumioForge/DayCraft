@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="hr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DayCraft – Postavke</title>
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicons/favicon.png"
+    />
+
+    <!-- Tailwind CSS + DaisyUI (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-base-100">
+    <!-- navbar -->
+    <nav class="navbar bg-base-100 shadow-sm px-4 py-2">
+      <div class="navbar-start">
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-primary"
+          >DayCraft</a
+        >
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="daily-planner.html">Rutina</a></li>
+          <li><a href="habbit-tracker.html">Navike</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <!-- profilni izbornik -->
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-8 rounded-full">
+              <img
+                src="https://api.dicebear.com/5.x/initials/svg?seed=U"
+                alt="Profilna slika"
+              />
+            </div>
+          </label>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box shadow mt-3 w-52"
+          >
+            <li><a href="settings.html">Postavke</a></li>
+            <li><a href="register.html">Odjava</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- sadržaj postavki -->
+    <main class="p-4 max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold mb-6">Postavke</h1>
+      <div class="flex flex-col md:flex-row gap-6">
+        <!-- bočna traka -->
+        <ul class="menu bg-base-200 rounded-box p-4 md:w-1/4">
+          <li class="menu-title">
+            <span>Postavke</span>
+          </li>
+          <li>
+            <a class="active" id="tabProfile">Profil</a>
+          </li>
+          <li>
+            <a id="tabApp">Postavke aplikacije</a>
+          </li>
+          <li>
+            <a id="tabPersonalization">Personalizacija</a>
+          </li>
+        </ul>
+
+        <!-- panel sekcija -->
+        <div class="flex-1">
+          <!-- Profil -->
+          <div id="profileSection">
+            <h2 class="text-2xl font-semibold mb-4">Profil</h2>
+            <div class="form-control mb-3">
+              <label
+                class="label font-semibold"
+                for="profileName"
+                >Ime</label
+              >
+              <input
+                id="profileName"
+                type="text"
+                class="input input-bordered w-full"
+              />
+            </div>
+            <div class="form-control mb-3">
+              <label
+                class="label font-semibold"
+                for="profileEmail"
+                >E‑pošta</label
+              >
+              <input
+                id="profileEmail"
+                type="email"
+                class="input input-bordered w-full"
+              />
+            </div>
+            <button
+              id="saveProfileBtn"
+              class="btn btn-primary"
+            >
+              Spremi profil
+            </button>
+          </div>
+
+          <!-- Postavke aplikacije -->
+          <div
+            id="appSettingsSection"
+            class="hidden"
+          >
+            <h2 class="text-2xl font-semibold mb-4">
+              Postavke aplikacije
+            </h2>
+            <div class="form-control mb-3">
+              <label class="label font-semibold">
+                Format datuma
+              </label>
+              <select
+                id="dateFormatSelect"
+                class="select select-bordered w-full"
+              >
+                <option value="MDY">MM/DD/YYYY</option>
+                <option value="DMY">DD/MM/YYYY</option>
+              </select>
+            </div>
+            <div class="form-control mb-3">
+              <label class="label font-semibold">
+                Prvi dan u tjednu
+              </label>
+              <select
+                id="startOfWeekSelect"
+                class="select select-bordered w-full"
+              >
+                <option value="Sunday">Nedjelja</option>
+                <option value="Monday">Ponedjeljak</option>
+              </select>
+            </div>
+            <button
+              id="saveAppSettingsBtn"
+              class="btn btn-primary"
+            >
+              Spremi postavke
+            </button>
+          </div>
+
+          <!-- Personalizacija -->
+          <div
+            id="personalizationSection"
+            class="hidden"
+          >
+            <h2 class="text-2xl font-semibold mb-4">
+              Personalizacija
+            </h2>
+            <div class="form-control mb-3">
+              <label class="label font-semibold">
+                Tema
+              </label>
+              <select
+                id="themeSelect"
+                class="select select-bordered w-full"
+              >
+                <option value="light">Svijetla</option>
+                <option value="dark">Tamna</option>
+              </select>
+            </div>
+            <div class="form-control mb-3">
+              <label class="label font-semibold">
+                Veličina fonta
+              </label>
+              <select
+                id="fontSizeSelect"
+                class="select select-bordered w-full"
+              >
+                <option value="medium">Normalna</option>
+                <option value="large">Povećana</option>
+              </select>
+            </div>
+            <button
+              id="savePersonalizationBtn"
+              class="btn btn-primary"
+            >
+              Spremi promjene
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+
+    <script type="module" src="storage.js"></script>
+    <script type="module" src="auth.js"></script>
+  </body>
+</html>

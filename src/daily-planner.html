@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="hr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DayCraft – Dnevni planer</title>
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicons/favicon.png"
+    />
+
+    <!-- Tailwind CSS + DaisyUI (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-base-100 flex flex-col min-h-screen">
+    <!-- navbar -->
+    <nav class="navbar bg-base-100 shadow-sm px-4 py-2">
+      <div class="navbar-start">
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-primary"
+          >DayCraft</a
+        >
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="daily-planner.html">Rutina</a></li>
+          <li><a href="habbit-tracker.html">Navike</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <!-- profilni izbornik -->
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-8 rounded-full">
+              <img
+                src="https://api.dicebear.com/5.x/initials/svg?seed=U"
+                alt="Profilna slika"
+              />
+            </div>
+          </label>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box shadow mt-3 w-52"
+          >
+            <li><a href="settings.html">Postavke</a></li>
+            <li><a href="register.html">Odjava</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- bočna traka + glavni sadržaj -->
+    <div class="drawer drawer-mobile md:drawer-open flex-1">
+      <input id="sidebar-drawer" type="checkbox" class="drawer-toggle" />
+      
+      <!-- SIDEBAR -->
+      <div class="drawer-side">
+        <label for="sidebar-drawer" class="drawer-overlay"></label>
+        <aside class="menu p-4 w-64 bg-base-200 text-base-content">
+          <h2 class="text-2xl font-bold mb-6">DayCraft</h2>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" id="navToday" class="flex items-center p-2 rounded-lg hover:bg-base-300">
+                📅 Zadatci
+              </a>
+            </li>
+            <li>
+              <a href="#" id="navUpcoming" class="flex items-center p-2 rounded-lg hover:bg-base-300">
+                🔮 Nadolazeće
+              </a>
+            </li>
+            <li>
+              <a href="#" id="navCategories" class="flex items-center p-2 rounded-lg hover:bg-base-300">
+                📂 Kategorije
+              </a>
+            </li>
+            <li>
+              <a href="#" id="navCompleted" class="flex items-center p-2 rounded-lg hover:bg-base-300">
+                ✅ Gotovo
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="drawer-content flex flex-col">
+        <!-- hamburger za mobilne -->
+        <div class="p-2 lg:hidden">
+          <label for="sidebar-drawer" class="btn btn-square btn-ghost" aria-label="Prebaci bočnu traku">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </label>
+        </div>
+
+        <main class="flex-1 p-4 lg:p-8 overflow-auto">
+          <!-- kalendar -->
+          <div class="bg-base-200 rounded-xl p-4 mb-6">
+            <div class="flex items-center justify-between mb-4">
+              <h2 id="calendarMonth" class="text-xl font-bold"></h2>
+              <div>
+                <button id="prevMonth" class="btn btn-sm btn-ghost">&larr;</button>
+                <button id="nextMonth" class="btn btn-sm btn-ghost">&rarr;</button>
+              </div>
+            </div>
+            <div id="calendarGrid" class="grid grid-cols-7 gap-2 text-center text-sm"></div>
+          </div>
+
+          <!-- zaglavlje zadataka -->
+          <div class="flex items-center justify-between mb-4">
+            <h2 id="sectionTitle" class="text-2xl font-bold">Zadatci</h2>
+            <div id="taskStats" class="text-sm text-gray-600"><span id="completedCount">0</span> dovršeno / <span id="totalCount">0</span> ukupno</div>
+          </div>
+
+          <!-- popis zadataka -->
+          <div id="tasksContainer" class="overflow-x-auto mb-16">
+            <div id="tasksContainer" class="overflow-auto mb-16"></div>
+            
+          </div>
+
+          <!-- gumb za dodavanje zadatka -->
+          <label for="addTaskModal"
+                 class="btn btn-primary btn-circle text-3xl fixed bottom-8 right-8 shadow-lg modal-button">
+            +
+          </label>
+
+          <!-- napredak po kategorijama -->
+          <section class="my-12">
+            <h3 class="text-2xl font-bold mb-4">Napredak po kategorijama</h3>
+            <div id="categoryRadials" class="flex flex-wrap gap-8"></div>
+          </section>
+
+          <!-- budući ciljevi -->
+          <section class="my-12">
+            <h3 class="text-2xl font-bold mb-4">Budući ciljevi</h3>
+            <button id="addGoalBtn" class="btn btn-sm btn-outline mb-4">Dodaj Cilj</button>
+            <div id="goalsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <p id="noGoalsMsg" class="text-center text-gray-500 my-4 hidden">
+              Nema budućih ciljeva.
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- modal za dodavanje zadatka -->
+    <input type="checkbox" id="addTaskModal" class="modal-toggle" />
+    <div class="modal" role="dialog">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg mb-4">Dodaj novi zadatak</h3>
+        <form id="taskForm" class="space-y-4">
+          <div>
+            <label class="label font-semibold">Naziv zadatka</label>
+            <input id="taskTitle" name="title" type="text"
+                   class="input input-bordered w-full" required/>
+          </div>
+          <div>
+            <label class="label font-semibold">Opis</label>
+            <textarea id="taskDescription" name="description"
+                      class="textarea textarea-bordered w-full"
+                      rows="3"></textarea>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:space-x-4">
+            <div class="flex-1">
+              <label class="label font-semibold">Kategorija</label>
+              <input id="taskCategory" name="category" type="text"
+                     class="input input-bordered w-full"
+                     placeholder="npr. Posao, Privatno"/>
+            </div>
+            <div class="flex-1">
+              <label class="label font-semibold">Rok</label>
+              <input id="taskDueDate" name="dueDate" type="date"
+                     class="input input-bordered w-full"/>
+            </div>
+          </div>
+          <div>
+            <label class="label font-semibold">Prioritet</label>
+            <select id="taskPriority" name="priority"
+                    class="select select-bordered w-full">
+              <option value="Low" selected>Nizak</option>
+              <option value="Medium">Srednji</option>
+              <option value="High">Visok</option>
+            </select>
+          </div>
+        </form>
+        <div class="modal-action">
+          <label for="addTaskModal" class="btn">Odustani</label>
+          <button id="addTaskBtn" class="btn btn-primary">Spremi zadatak</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- modal za dodavanje ili uređivanje cilja -->
+    <input type="checkbox" id="addGoalModal" class="modal-toggle" />
+    <div class="modal" role="dialog">
+      <div class="modal-box">
+        <h3 id="goalModalTitle" class="font-bold text-lg mb-4">Dodaj novi cilj</h3>
+        <form id="goalForm" class="space-y-4">
+          <div class="form-control">
+            <label class="label" for="goalTitle"><span class="label-text">Naslov cilja</span></label>
+            <input id="goalTitle" name="title" type="text"
+                   class="input input-bordered w-full" required />
+          </div>
+          <div class="form-control">
+            <label class="label" for="goalDescription"><span class="label-text">Opis</span></label>
+            <textarea id="goalDescription" name="description"
+                      class="textarea textarea-bordered w-full"></textarea>
+          </div>
+          <div class="form-control">
+            <label class="label" for="goalImageUrl"><span class="label-text">Slika URL</span></label>
+            <input id="goalImageUrl" name="imageUrl" type="text"
+                   class="input input-bordered w-full"
+                   placeholder="URL slike" />
+          </div>
+        </form>
+        <div class="modal-action">
+          <label for="addGoalModal" class="btn">Odustani</label>
+          <button id="saveGoalBtn" class="btn btn-primary">Spremi Cilj</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- skripte -->
+    <script type="module" src="storage.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="tasks.js"></script>
+  </body>
+</html>

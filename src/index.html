@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="hr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DayCraft – Planiraj svoj dan</title>
+
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicons/favicon.png"
+    />
+
+    <!-- Tailwind CSS + DaisyUI (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-base-100 text-base-content">
+
+    <!-- navbar -->
+    <nav class="navbar bg-base-100 shadow-sm px-4 py-2">
+      <div class="navbar-start">
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-primary"
+          >DayCraft</a
+        >
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li><a href="daily-planner.html">Rutina</a></li>
+          <li><a href="habbit-tracker.html">Navike</a></li>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        <!-- profilni izbornik -->
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-8 rounded-full">
+              <img
+                src="https://api.dicebear.com/5.x/initials/svg?seed=U"
+                alt="Profilna slika"
+              />
+            </div>
+          </label>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box shadow mt-3 w-52"
+          >
+            <li><a href="settings.html">Postavke</a></li>
+            <li><a href="register.html">Odjava</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="hero bg-base-200 py-16">
+      <div class="hero-content flex-col lg:flex-row-reverse">
+        <img
+          src="assets/icons/Dnevni-planer.png"
+          alt="Snimka aplikacije"
+          class="max-w-sm rounded-lg shadow-2xl"
+        />
+        <div>
+          <h1 class="text-5xl font-bold">
+            Planiraj svoj dan i ostvari više
+          </h1>
+          <p class="py-6 text-lg">
+            Organizirajte zadatke, postavite prioritete i
+            pratite svoj napredak bez napora&nbsp;– sve na
+            jednom mjestu.
+          </p>
+          <a
+            href="daily-planner.html"
+            class="btn btn-primary btn-lg"
+            >Započni planirati</a
+          >
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="px-6 py-16 text-center">
+      <h2 class="text-4xl font-bold mb-8">Zašto DayCraft?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+       
+        <div class="card bg-base-100 shadow-md">
+          <div class="card-body">
+            <h3 class="card-title text-2xl">Planiraj dan</h3>
+            <p>
+              Rasporedite zadatke s rokovima i
+              prioritetima. Ostanite fokusirani uz
+              jasan plan za dan.
+            </p>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow-md">
+          <div class="card-body">
+            <h3 class="card-title text-2xl">
+              Postavi prioritete
+            </h3>
+            <p>
+              Kategorizirajte i prioritizirajte svoje
+              zadatke. Prvo se posvetite onome što je
+              najvažnije.
+            </p>
+          </div>
+        </div>
+      
+        <div class="card bg-base-100 shadow-md">
+          <div class="card-body">
+            <h3 class="card-title text-2xl">
+              Prati napredak
+            </h3>
+            <p>
+              Označite dovršene zadatke i pratite svoj
+              napredak. Vizualni podaci motiviraju.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+    <section class="bg-base-200 py-16">
+      <h2 class="text-4xl font-bold text-center mb-8">
+        Što naši korisnici kažu
+      </h2>
+      <div class="max-w-3xl mx-auto space-y-6">
+        <div class="bg-white shadow p-6 rounded-lg">
+          <p class="text-xl font-semibold">
+            „DayCraft je transformirao način na koji
+            organiziram svoj dan. Obavim više nego
+            ikad!”
+          </p>
+          <p class="mt-4 text-sm text-gray-600">
+            — Alex P., slobodni profesionalac
+          </p>
+        </div>
+        <div class="bg-white shadow p-6 rounded-lg">
+          <p class="text-xl font-semibold">
+            „Dnevni planer i tracker navika pomogli su
+            mi izgraditi bolje rutine. Toplo preporučujem!”
+          </p>
+          <p class="mt-4 text-sm text-gray-600">
+            — Maria L., poduzetnica
+          </p>
+        </div>
+        <div class="bg-white shadow p-6 rounded-lg">
+          <p class="text-xl font-semibold">
+            „Obožavam čist dizajn. Nadzorna ploča mi
+            svakodnevno daje brz pregled napretka.”
+          </p>
+          <p class="mt-4 text-sm text-gray-600">
+            — Jamal R., student
+          </p>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="py-16 text-center">
+      <h2 class="text-3xl font-bold mb-4">
+        Spremni za uspjeh svaki dan?
+      </h2>
+      <p class="mb-6 text-lg">
+        Pridružite se besplatno i svakodnevno
+        ostvarujte više.
+      </p>
+      <a
+        href="daily-planner.html"
+        class="btn btn-primary btn-lg"
+        >Započni besplatno</a
+      >
+    </section>
+
+
+    <footer class="py-6 text-center text-sm text-gray-500">
+      © 2025 DayCraft. Sva prava pridržana.
+    </footer>
+
+    <!-- skripte -->
+    
+    <script src="storage.js"></script>
+    <script src="tasks.js"></script>
+  </body>
+</html>
+

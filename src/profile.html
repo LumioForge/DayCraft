@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="hr" data-theme="light">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Moj profil | DayCraft</title>
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicons/favicon.png"
+    />
+
+    <!-- Tailwind CSS + DaisyUI (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-base-100">
+    <nav class="navbar bg-base-200 p-4">
+      <a href="daily-planner.html" class="btn btn-ghost normal-case text-xl">
+        ← Natrag na planer
+      </a>
+      <div class="flex-1"></div>
+      <button id="logoutBtn" class="btn btn-outline btn-sm">Odjava</button>
+    </nav>
+
+    <main class="max-w-md mx-auto mt-10 bg-base-200 p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold mb-4 text-center">Moj profil</h2>
+      <div class="space-y-3">
+        <p><strong>Ime:</strong> <span id="displayName"></span></p>
+        <p><strong>E‑pošta:</strong> <span id="displayEmail"></span></p>
+      </div>
+    </main>
+
+    
+  
+    <script type="module">
+      import { users as korisnici, getCurrentUserEmail as dohvatiEmail } from './storage.js';
+      document.addEventListener('DOMContentLoaded', () => {
+        const email = dohvatiEmail();
+        if (!email || !korisnici[email]) {
+          location.href = 'login.html';
+          return;
+        }
+        const korisnik = korisnici[email];
+        document.getElementById('displayName').textContent = korisnik.name;
+        document.getElementById('displayEmail').textContent = korisnik.email;
+      });
+    </script>
+    <script type="module" src="storage.js"></script>
+    <script type="module" src="auth.js"></script>
+
+</body>
+</html>

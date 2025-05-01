@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="hr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>DayCraft – Registracija</title>
+    <!-- favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicons/favicon.png"
+    />
+
+    <!-- Tailwind CSS + DaisyUI (CDN) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="bg-base-200">
+    <div
+      class="min-h-screen flex items-center justify-center"
+    >
+      <div
+        class="card w-96 bg-base-100 shadow-lg p-6"
+      >
+        <h2
+          class="text-2xl font-bold text-center mb-4"
+        >
+          Izradi račun
+        </h2>
+
+        <!-- obrazac za registraciju -->
+        <form id="registerForm">
+          <div class="form-control mb-3">
+            <label
+              class="label font-semibold"
+              for="regName"
+              >Ime</label
+            >
+            <input
+              id="regName"
+              type="text"
+              class="input input-bordered w-full"
+              placeholder="Vaše ime"
+              required
+            />
+          </div>
+
+          <div class="form-control mb-3">
+            <label
+              class="label font-semibold"
+              for="regEmail"
+              >E‑pošta</label
+            >
+            <input
+              id="regEmail"
+              type="email"
+              class="input input-bordered w-full"
+              placeholder="ime@primjer.com"
+              required
+            />
+          </div>
+
+          <div class="form-control mb-4">
+            <label
+              class="label font-semibold"
+              for="regPassword"
+              >Lozinka</label
+            >
+            <input
+              id="regPassword"
+              type="password"
+              class="input input-bordered w-full"
+              placeholder="Odaberite lozinku"
+              minlength="6"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-full"
+          >
+            Registriraj se
+          </button>
+        </form>
+
+        <!-- poruka o uspješnoj registraciji -->
+        <div
+          id="regSuccess"
+          class="alert alert-success mt-4 shadow-lg hidden"
+        >
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="stroke-current flex-shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span>
+              Račun je izrađen! Možete se sada
+              <a
+                href="login.html"
+                class="font-bold underline"
+                >prijaviti</a
+              >.
+            </span>
+          </div>
+        </div>
+
+        <p class="mt-4 text-sm text-center">
+          Već imate račun?
+          <a
+            href="login.html"
+            class="link link-primary font-semibold"
+            >Prijavite se</a
+          >
+        </p>
+      </div>
+    </div>
+
+
+    <script type="module" src="storage.js"></script>
+    <script type="module" src="auth.js"></script>
+  </body>
+</html>
+
