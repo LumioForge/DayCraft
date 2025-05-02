@@ -14,15 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const jeStranicaRegistracije =
     window.location.href.includes('register.html');
 
-  // preusmjeri na prijavu ako nije autentificiran
-  if (
-    !trenutniKorisnikEmail &&
-    !jeStranicaPrijave &&
-    !jeStranicaRegistracije
-  ) {
-    window.location.href = 'login.html';
-    return;
-  }
+  
 
   // primijeni korisnikove postavke teme i veličine fonta
   if (
